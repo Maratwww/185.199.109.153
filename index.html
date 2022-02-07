@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Безымянная страница</title>
+<meta name="generator" content="WYSIWYG Web Builder 17 Trial Version - https://www.wysiwygwebbuilder.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="Безымянный1.css" rel="stylesheet">
+<link href="index.css" rel="stylesheet">
+</head>
+<body>
+<a href="https://www.wysiwygwebbuilder.com" target="_blank"><img src="images/builtwithwwb17.png" alt="WYSIWYG Web Builder" style="position:absolute;left:441px;top:967px;margin: 0;border-width:0;z-index:250" width="16" height="16"></a>
+<div id="wb_LayoutGrid1">
+<div id="LayoutGrid1">
+<div class="row">
+<div class="col-1">
+</div>
+<div class="col-2">
+</div>
+<div class="col-3">
+<div id="Html1" style="display:inline-block;width:535px;height:251px;z-index:0">
+<a href="javascript:" title="Добавить сообщение" onclick="window.open('forma_02.html','mess','width=500, height=300, left=0, top=0'); return true;"><img src="images/guest_mess.png" alt="Сообщение" width="200" height="25" border="0" /></a>.
+
+Здесь в JavaScript вы задаете адрес открываемой страницы (forma_02.html), ширину и высоту нового окна (500х600 пиксел) и его положение на экране монитора (верхний левый угол). Содержание окна не имеет каких либо особенностей и определяется необходимой вам информацией о посетителе: имя, адрес, e-mail, ICQ и т.п.
+
+Чтобы не допускать мелких пакостей от посетителей сайта, на РНР-страничке отправки письма на ваш почтовый ящик целесообразно ввести дополнительные проверки ввода имени автора и текста сообщений (см. статью Проверка заполнения формы обратной связи на сайте").
+
+В случае удачной отправки сообщения выводится надпись:
+"Спасибо за отправку вашего сообщения.
+После проверки администратором сайта
+оно будет добавлено в гостевую книгу."
+Полный текст РНР-страницы для рассмотренного примера следующий:
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Сообщение</title>
+</head>
+<body >
+<?php
+if (isset($_POST['name'])) {$name = $_POST['name'];}
+if (isset($_POST['mess'])) {$mess = $_POST['mess'];}
+if (isset($_POST['city'])) {$city = $_POST['city'];}
+
+if (empty($name))
+{
+echo "<b>Не указано имя!<p>";
+echo "Вернитесь к заполнению формы";
+}
+else
+if (empty($mess))
+{
+echo "<b>Сообщение не написано!<p>";
+echo "Вернитесь к заполнению формы";
+}
+else
+{
+$to = "pupkin@rambler.ru"; //Здесь укажите свой адрес
+$headers = "Content-type: text/plain; charset = utf-8";
+$subject = "Сообщение в гостевой книге";
+$message = "Имя пославшего: $name \nГород: $city \nСообщение: $mess";
+$send = mail ($to, $subject, $message, $headers); //Отправка письма
+if ($send == 'true')
+{
+echo "<p><b>Спасибо за отправку вашего сообщения.";
+echo "<p><b>После проверки администратором сайта <br />оно будет добавлено в гостевую книгу.";
+}
+else
+{
+echo "<p><b>Сообщение не отправлено. Приносим свои извинения.";
+echo "<p><b>Попробуйте повторить отправку позже или свяжитесь с нами по телефону.";
+}
+}
+?>
+</body>
+</html></div>
+</div>
+<div class="col-4">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
